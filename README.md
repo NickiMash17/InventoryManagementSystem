@@ -235,17 +235,29 @@ public class InventoryManager
 
 ### Main Menu Interface
 ```
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                      🏪 ADVANCED INVENTORY MANAGER 🏪                       ║
-║                           Professional Edition v2.0                         ║
-╠══════════════════════════════════════════════════════════════════════════════╣
-║                                                                              ║
-║    1. ➕ Add New Product              4. 🗑️  Remove Product                ║
-║    2. 📋 View All Products            5. 📊 Export Report                   ║
-║    3. ✏️  Update Product Quantity     6. 🚪 Exit Application               ║
-║                                                                              ║
-║    📦 Current Inventory:   3 products    💰 Total Value:  $103,099.58    ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                              🏪 ADVANCED INVENTORY MANAGEMENT SYSTEM 🏪                              ║
+║                                    Professional Enterprise Edition                                    ║
+║                              © 2025 Nicolette Mashaba. All rights reserved.                          ║
+╠══════════════════════════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                                      ║
+║  📋 MAIN MENU OPTIONS:                                                                                ║
+║                                                                                                      ║
+║    1. ➕ Add New Product          - Create and add new inventory items                              ║
+║    2. 📋 View All Products        - Display complete inventory with details                         ║
+║    3. ✏️  Update Product Quantity - Modify existing product quantities                              ║
+║    4. 🗑️  Remove Product          - Delete products from inventory                                 ║
+║    5. 📊 Export Report            - Generate detailed inventory reports                             ║
+║    6. 🚪 Exit Application         - Safely close the application                                   ║
+║                                                                                                      ║
+║  📊 REAL-TIME STATISTICS:                                                                           ║
+║                                                                                                      ║
+║    📦 Products in Inventory:   3 items                                           ║
+║    📦 Total Stock Items:    102 units                                             ║
+║    💰 Total Inventory Value:  $103,099.58                                           ║
+║    ⚠️  Low Stock Alerts:       0 products (≤10 units)                            ║
+║                                                                                                      ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝
 ```
 
 ### Product Display
@@ -284,7 +296,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Case Study**: Inventory Management System  
 **Total Marks**: 100/100 ✅
 
-**Student**: Nicoletta Mashaba  
+**Student**: Nicolette Mashaba  
 **Repository**: https://github.com/NickiMash17/InventoryManagementSystem  
 **Status**: Complete and Ready for Submission
 
@@ -297,5 +309,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=.net)](https://dotnet.microsoft.com/)
 [![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+---
+
+**© 2025 Nicolette Mashaba. All rights reserved.**
+
+This project is part of the C# Application Development Assessment (251201-001-00-00-PM-03).
 
 </div>

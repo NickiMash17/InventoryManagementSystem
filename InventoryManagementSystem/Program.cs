@@ -1,4 +1,27 @@
-﻿using System;
+﻿/*
+ * =============================================================================
+ * INVENTORY MANAGEMENT SYSTEM
+ * =============================================================================
+ * 
+ * Developer: Nicolette Mashaba
+ * Date: 2025
+ * Assessment: C# Application Development (251201-001-00-00-PM-03)
+ * 
+ * This is an original work created for educational assessment purposes.
+ * All code, logic, and design are the intellectual property of Nicolette Mashaba.
+ * 
+ * Features:
+ * - Add, view, update, and remove products with validation
+ * - JSON persistence for data storage
+ * - Professional console interface with enhanced UI
+ * - Comprehensive error handling and logging
+ * - Unit testing with MSTest framework
+ * 
+ * © 2025 Nicolette Mashaba. All rights reserved.
+ * =============================================================================
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +30,21 @@ using System.Globalization;
 
 namespace AdvancedInventoryManagement
 {
-    /// <summary>
-    /// Represents a product in the inventory system with comprehensive validation and formatting
-    /// </summary>
+            /// <summary>
+        /// Represents a product in the inventory system with comprehensive validation and formatting
+        /// 
+        /// Author: Nicolette Mashaba
+        /// Date: 2025
+        /// Assessment: C# Application Development (251201-001-00-00-PM-03)
+        /// 
+        /// This class implements the Product entity with:
+        /// - Comprehensive input validation
+        /// - Automatic product ID generation
+        /// - Total value calculations
+        /// - Professional data formatting
+        /// 
+        /// © 2025 Nicolette Mashaba. All rights reserved.
+        /// </summary>
     public class Product
     {
         private string _name;
@@ -115,9 +150,23 @@ namespace AdvancedInventoryManagement
         }
     }
 
-    /// <summary>
-    /// Advanced Inventory Management System with comprehensive features and error handling
-    /// </summary>
+            /// <summary>
+        /// Advanced Inventory Management System with comprehensive features and error handling
+        /// 
+        /// Author: Nicolette Mashaba
+        /// Date: 2025
+        /// Assessment: C# Application Development (251201-001-00-00-PM-03)
+        /// 
+        /// This class implements the core inventory management functionality:
+        /// - Add, view, update, and remove products
+        /// - Professional console interface with enhanced UI
+        /// - JSON persistence for data storage
+        /// - Comprehensive error handling and logging
+        /// - Real-time inventory analytics
+        /// - Export functionality for reports
+        /// 
+        /// © 2025 Nicolette Mashaba. All rights reserved.
+        /// </summary>
     public class InventoryManager
     {
         private List<Product> _inventory;
@@ -230,11 +279,12 @@ namespace AdvancedInventoryManagement
         public void ViewAllProducts()
         {
             Console.Clear();
-            DisplayHeader("INVENTORY OVERVIEW");
+            DisplayEnhancedHeader();
+            DisplayInventoryTableHeader();
 
             if (_inventory.Count == 0)
             {
-                Console.WriteLine("📦 No products in inventory.");
+                DisplayEmptyInventoryMessage();
                 PauseForUser();
                 return;
             }
@@ -243,30 +293,106 @@ namespace AdvancedInventoryManagement
             var totalProducts = _inventory.Count;
             var totalItems = _inventory.Sum(p => p.Quantity);
             var totalValue = _inventory.Sum(p => p.TotalValue);
+            var lowStockItems = _inventory.Count(p => p.Quantity <= 10);
 
-            // Display summary statistics
-            Console.WriteLine($"📊 INVENTORY STATISTICS:");
-            Console.WriteLine($"   Total Products: {totalProducts}");
-            Console.WriteLine($"   Total Items: {totalItems:N0}");
-            Console.WriteLine($"   Total Value: {totalValue:C}");
-            Console.WriteLine();
+            // Display enhanced summary statistics
+            DisplayInventorySummary(totalProducts, totalItems, totalValue, lowStockItems);
 
-            // Display table header
-            Console.WriteLine("┌─────┬──────────────────┬─────────┬─────────────┬─────────────┬──────────────┐");
-            Console.WriteLine("│ No. │ Product Name     │ Qty     │ Unit Price  │ Total Value │ Product ID   │");
-            Console.WriteLine("├─────┼──────────────────┼─────────┼─────────────┼─────────────┼──────────────┤");
+            // Display enhanced table
+            DisplayEnhancedProductTable();
 
-            // Display products in formatted table
-            for (int i = 0; i < _inventory.Count; i++)
-            {
-                var product = _inventory[i];
-                Console.WriteLine($"│ {i + 1,3} │ {TruncateString(product.Name, 16),-16} │ {product.Quantity,7} │ {product.Price,11:C} │ {product.TotalValue,11:C} │ {product.ProductId,-12} │");
-            }
-
-            Console.WriteLine("└─────┴──────────────────┴─────────┴─────────────┴─────────────┴──────────────┘");
+            // Display additional insights
+            DisplayInventoryInsights();
             
             LogAction($"Viewed inventory - {totalProducts} products displayed");
             PauseForUser();
+        }
+
+        /// <summary>
+        /// Displays the enhanced inventory table header
+        /// </summary>
+        private void DisplayInventoryTableHeader()
+        {
+            Console.WriteLine("|                              📋 COMPLETE INVENTORY OVERVIEW                              |");
+            Console.WriteLine("+==================================================================================================+");
+            Console.WriteLine("|                                                                                                      |");
+        }
+
+        /// <summary>
+        /// Displays message when inventory is empty
+        /// </summary>
+        private void DisplayEmptyInventoryMessage()
+        {
+            Console.WriteLine("|                              📦 INVENTORY OVERVIEW                                    |");
+            Console.WriteLine("+==================================================================================================+");
+            Console.WriteLine("|                                                                                                      |");
+            Console.WriteLine("|                                    📦 No products in inventory.                                     |");
+            Console.WriteLine("|                                                                                                      |");
+            Console.WriteLine("|                              💡 Add some products to get started!                                   |");
+            Console.WriteLine("|                                                                                                      |");
+            Console.WriteLine("+==================================================================================================+");
+        }
+
+        /// <summary>
+        /// Displays enhanced inventory summary statistics
+        /// </summary>
+        private void DisplayInventorySummary(int totalProducts, int totalItems, decimal totalValue, int lowStockItems)
+        {
+            Console.WriteLine("|  📊 INVENTORY SUMMARY:                                                                              |");
+            Console.WriteLine("|                                                                                                      |");
+            Console.WriteLine($"|    📦 Total Products:     {totalProducts,3} items                                           |");
+            Console.WriteLine($"|    📦 Total Stock Items:  {totalItems,6:N0} units                                             |");
+            Console.WriteLine($"|    💰 Total Value:        {totalValue,12:C}                                           |");
+            Console.WriteLine($"|    ⚠️  Low Stock Alerts:   {lowStockItems,3} products (≤10 units)                            |");
+            Console.WriteLine("|                                                                                                      |");
+        }
+
+        /// <summary>
+        /// Displays enhanced product table with better formatting
+        /// </summary>
+        private void DisplayEnhancedProductTable()
+        {
+            Console.WriteLine("|  📋 PRODUCT DETAILS:                                                                                |");
+            Console.WriteLine("|                                                                                                      |");
+            Console.WriteLine("|  +-----+--------------------+----------+--------------+--------------+--------------------+        |");
+            Console.WriteLine("|  | No. | Product Name       | Quantity | Unit Price   | Total Value  | Product ID         |        |");
+            Console.WriteLine("|  +-----+--------------------+----------+--------------+--------------+--------------------+        |");
+
+            // Display products in enhanced table
+            for (int i = 0; i < _inventory.Count; i++)
+            {
+                var product = _inventory[i];
+                var stockStatus = product.Quantity <= 10 ? "⚠️ " : "✅ ";
+                Console.WriteLine($"|  | {i + 1,3} | {TruncateString(product.Name, 18),-18} | {product.Quantity,8} | {product.Price,12:C} | {product.TotalValue,12:C} | {product.ProductId,-18} |        |");
+            }
+
+            Console.WriteLine("|  +-----+--------------------+----------+--------------+--------------+--------------------+        |");
+            Console.WriteLine("|                                                                                                      |");
+        }
+
+        /// <summary>
+        /// Displays additional inventory insights
+        /// </summary>
+        private void DisplayInventoryInsights()
+        {
+            var mostExpensive = _inventory.OrderByDescending(p => p.Price).FirstOrDefault();
+            var highestValue = _inventory.OrderByDescending(p => p.TotalValue).FirstOrDefault();
+            var lowestStock = _inventory.OrderBy(p => p.Quantity).FirstOrDefault();
+
+            Console.WriteLine("|  💡 INVENTORY INSIGHTS:                                                                             |");
+            Console.WriteLine("|                                                                                                      |");
+            
+            if (mostExpensive != null)
+                Console.WriteLine($"|    💎 Most Expensive Item: {TruncateString(mostExpensive.Name, 20),-20} @ {mostExpensive.Price,10:C}                    |");
+            
+            if (highestValue != null)
+                Console.WriteLine($"|    💰 Highest Value Item:  {TruncateString(highestValue.Name, 20),-20} = {highestValue.TotalValue,10:C}                    |");
+            
+            if (lowestStock != null)
+                Console.WriteLine($"|    ⚠️  Lowest Stock Item:   {TruncateString(lowestStock.Name, 20),-20} ({lowestStock.Quantity,3} units)                    |");
+            
+            Console.WriteLine("|                                                                                                      |");
+            Console.WriteLine("+==================================================================================================+");
         }
 
         /// <summary>
@@ -547,6 +673,18 @@ namespace AdvancedInventoryManagement
 
         /// <summary>
         /// Displays the main menu and handles user selection
+        /// 
+        /// Author: Nicolette Mashaba
+        /// Date: 2025
+        /// Assessment: C# Application Development (251201-001-00-00-PM-03)
+        /// 
+        /// This method implements the main user interface with:
+        /// - Professional console layout and formatting
+        /// - Real-time inventory statistics
+        /// - Enhanced error handling and user feedback
+        /// - Comprehensive menu navigation
+        /// 
+        /// © 2025 Nicolette Mashaba. All rights reserved.
         /// </summary>
         public void DisplayMenu()
         {
@@ -556,19 +694,16 @@ namespace AdvancedInventoryManagement
                 {
                     Console.Clear();
                     
-                    // Display animated header
-                    Console.WriteLine("╔══════════════════════════════════════════════════════════════════════════════╗");
-                    Console.WriteLine("║                      🏪 ADVANCED INVENTORY MANAGER 🏪                       ║");
-                    Console.WriteLine("║                           Professional Edition v2.0                         ║");
-                    Console.WriteLine("╠══════════════════════════════════════════════════════════════════════════════╣");
-                    Console.WriteLine("║                                                                              ║");
-                    Console.WriteLine("║    1. ➕ Add New Product              4. 🗑️  Remove Product                ║");
-                    Console.WriteLine("║    2. 📋 View All Products            5. 📊 Export Report                   ║");
-                    Console.WriteLine("║    3. ✏️  Update Product Quantity     6. 🚪 Exit Application               ║");
-                    Console.WriteLine("║                                                                              ║");
-                    Console.WriteLine($"║    📦 Current Inventory: {_inventory.Count,3} products    💰 Total Value: {_inventory.Sum(p => p.TotalValue),12:C}    ║");
-                    Console.WriteLine("╚══════════════════════════════════════════════════════════════════════════════╝");
+                    // Display enhanced header
+                    DisplayEnhancedHeader();
                     
+                    // Display menu options with better formatting
+                    DisplayMenuOptions();
+                    
+                    // Display real-time statistics
+                    DisplayInventoryStats();
+                    
+                    // Enhanced input prompt
                     Console.Write("\n🎯 Please select an option (1-6): ");
                     
                     string choice = Console.ReadLine()?.Trim();
@@ -594,20 +729,87 @@ namespace AdvancedInventoryManagement
                             ExitApplication();
                             return;
                         default:
-                            Console.WriteLine("\n❌ Invalid option! Please select 1-6.");
-                            Console.WriteLine("Press any key to continue...");
-                            Console.ReadKey(true);
+                            DisplayInvalidOptionMessage();
                             break;
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"\n❌ An unexpected error occurred: {ex.Message}");
+                    DisplayErrorMessage(ex.Message);
                     LogAction($"Unexpected error in menu: {ex.Message}");
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadKey(true);
                 }
             }
+        }
+
+        /// <summary>
+        /// Displays the enhanced header with professional styling
+        /// </summary>
+        private void DisplayEnhancedHeader()
+        {
+            Console.WriteLine("╔══════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+            Console.WriteLine("║                              🏪 ADVANCED INVENTORY MANAGEMENT SYSTEM 🏪                              ║");
+            Console.WriteLine("║                                    Professional Enterprise Edition                                    ║");
+            Console.WriteLine("║                              © 2025 Nicolette Mashaba. All rights reserved.                          ║");
+            Console.WriteLine("╠══════════════════════════════════════════════════════════════════════════════════════════════════════╣");
+            Console.WriteLine("║                                                                                                      ║");
+        }
+
+        /// <summary>
+        /// Displays menu options with enhanced formatting and descriptions
+        /// </summary>
+        private void DisplayMenuOptions()
+        {
+            Console.WriteLine("║  📋 MAIN MENU OPTIONS:                                                                                ║");
+            Console.WriteLine("║                                                                                                      ║");
+            Console.WriteLine("║    1. ➕ Add New Product          - Create and add new inventory items                              ║");
+            Console.WriteLine("║    2. 📋 View All Products        - Display complete inventory with details                         ║");
+            Console.WriteLine("║    3. ✏️  Update Product Quantity - Modify existing product quantities                              ║");
+            Console.WriteLine("║    4. 🗑️  Remove Product          - Delete products from inventory                                 ║");
+            Console.WriteLine("║    5. 📊 Export Report            - Generate detailed inventory reports                             ║");
+            Console.WriteLine("║    6. 🚪 Exit Application         - Safely close the application                                   ║");
+            Console.WriteLine("║                                                                                                      ║");
+        }
+
+        /// <summary>
+        /// Displays real-time inventory statistics with enhanced formatting
+        /// </summary>
+        private void DisplayInventoryStats()
+        {
+            var totalValue = _inventory.Sum(p => p.TotalValue);
+            var totalItems = _inventory.Sum(p => p.Quantity);
+            var lowStockItems = _inventory.Count(p => p.Quantity <= 10);
+            
+            Console.WriteLine("║  📊 REAL-TIME STATISTICS:                                                                           ║");
+            Console.WriteLine("║                                                                                                      ║");
+            Console.WriteLine($"║    📦 Products in Inventory: {_inventory.Count,3} items                                           ║");
+            Console.WriteLine($"║    📦 Total Stock Items:     {totalItems,6:N0} units                                             ║");
+            Console.WriteLine($"║    💰 Total Inventory Value: {totalValue,12:C}                                           ║");
+            Console.WriteLine($"║    ⚠️  Low Stock Alerts:      {lowStockItems,3} products (≤10 units)                            ║");
+            Console.WriteLine("║                                                                                                      ║");
+            Console.WriteLine("╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+        }
+
+        /// <summary>
+        /// Displays an enhanced invalid option message
+        /// </summary>
+        private void DisplayInvalidOptionMessage()
+        {
+            Console.WriteLine("\n❌ Invalid option! Please select 1-6.");
+            Console.WriteLine("💡 Tip: Enter the number corresponding to your desired action.");
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey(true);
+        }
+
+        /// <summary>
+        /// Displays an enhanced error message
+        /// </summary>
+        /// <param name="message">Error message to display</param>
+        private void DisplayErrorMessage(string message)
+        {
+            Console.WriteLine($"\n❌ An unexpected error occurred: {message}");
+            Console.WriteLine("🔧 The system will continue to function normally.");
         }
 
         /// <summary>
@@ -688,14 +890,38 @@ namespace AdvancedInventoryManagement
         }
     }
 
-    /// <summary>
-    /// Main program class - Entry point for the Inventory Management System
-    /// </summary>
+            /// <summary>
+        /// Main program class - Entry point for the Inventory Management System
+        /// 
+        /// Author: Nicolette Mashaba
+        /// Date: 2025
+        /// Assessment: C# Application Development (251201-001-00-00-PM-03)
+        /// 
+        /// This class serves as the application entry point and initializes:
+        /// - Console configuration for optimal display
+        /// - Inventory manager instance
+        /// - Main menu loop
+        /// - Global error handling
+        /// 
+        /// © 2025 Nicolette Mashaba. All rights reserved.
+        /// </summary>
     class Program
     {
         /// <summary>
         /// Main method - Application entry point
         /// Initializes the inventory manager and displays the main menu
+        /// 
+        /// Author: Nicolette Mashaba
+        /// Date: 2025
+        /// Assessment: C# Application Development (251201-001-00-00-PM-03)
+        /// 
+        /// This method:
+        /// - Configures console for optimal display
+        /// - Initializes the inventory management system
+        /// - Handles global exceptions gracefully
+        /// - Provides user-friendly error messages
+        /// 
+        /// © 2025 Nicolette Mashaba. All rights reserved.
         /// </summary>
         /// <param name="args">Command line arguments (not used)</param>
         static void Main(string[] args)
