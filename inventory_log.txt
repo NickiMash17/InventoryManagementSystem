@@ -1,0 +1,2 @@
+[2025-07-26 19:14:47] === INVENTORY MANAGEMENT SYSTEM STARTED ===
+[2025-07-26 19:14:47] Sample data loaded successfully

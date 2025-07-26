@@ -1,0 +1,4 @@
+[2025-07-26 18:13:35] === INVENTORY MANAGEMENT SYSTEM STARTED ===
+[2025-07-26 18:13:35] Sample data loaded successfully
+[2025-07-26 18:14:11] Added product: Mango | Qty: 67 | Price: $120.00 | ID: PRD250726181411267
+[2025-07-26 18:14:24] Viewed inventory - 4 products displayed
