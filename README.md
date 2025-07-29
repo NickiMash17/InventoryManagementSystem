@@ -9,6 +9,7 @@ A professional C# console application for managing retail inventory with compreh
 - [Installation & Setup](#installation--setup)
 - [Usage Guide](#usage-guide)
 - [Testing](#testing)
+- [Deployment & Evidence](#deployment--evidence)
 - [Assessment Compliance](#assessment-compliance)
 - [Technical Details](#technical-details)
 - [Screenshots](#screenshots)
@@ -27,6 +28,7 @@ This Inventory Management System is a comprehensive C# console application desig
 - ✅ **Real-time Analytics**: Live inventory statistics and value calculations
 - ✅ **Logging System**: Complete audit trail of all operations
 - ✅ **Unit Testing**: Comprehensive test coverage with MSTest
+- ✅ **Nullable Reference Type Compliance**: All CS8600, CS8603, CS8618 warnings resolved
 
 ## 🚀 Features
 
@@ -178,6 +180,38 @@ Test run for InventoryManagementSystem.Tests.dll (.NETCoreApp,Version=v8.0)
 Passed!  - Failed: 0, Passed: 5, Skipped: 0, Total: 5
 ```
 
+### Debugging Evidence
+- Breakpoints set in VS Code for key methods (`AddProduct`, `FindProduct`, `GetValidatedStringInput`)
+- Debug session screenshots included in [Annexure A](#-visual-documentation-annexure-a)
+- All nullable reference type warnings resolved and verified
+- **Test Results:**  
+  ![Test Results](screenshots/test-results.png)
+
+## 🚀 Deployment & Evidence
+
+### Build Process
+```bash
+dotnet clean
+dotnet build
+```
+- **Build Output:**  
+  ![Build Output](screenshots/build-output.png)
+
+### Application Execution
+```bash
+dotnet run --project InventoryManagementSystem
+```
+- **Main Menu:**  
+  ![Main Menu](screenshots/main-menu.png)
+
+### Data Persistence
+- Inventory data is stored in `inventory.json`
+- Activity logs are stored in `inventory_log.txt`
+- **Sample Data File:**  
+  ![Inventory JSON](screenshots/inventory-json.png)
+
+---
+
 ## 📊 Assessment Compliance
 
 This project fully complies with the **C# Application Development Assessment** requirements:
@@ -272,6 +306,29 @@ public class InventoryManager
 ║ PRD250726181411269│ Smartphone     │       25 │ R8,500.00  │ R212,500.00   ║
 ╚═══════════════════╧════════════════╧══════════╧════════════╧════════════════╝
 ```
+
+## 🆕 Recent Improvements
+
+- Fixed all nullable reference type warnings (CS8600, CS8603, CS8618)
+- Improved input validation and error handling
+- Enhanced unit test coverage and documentation
+- Added visual documentation and deployment evidence
+
+---
+
+## 📸 Visual Documentation (Annexure A)
+
+| Section                | Screenshot                                  |
+|------------------------|---------------------------------------------|
+| Main Menu              | ![Main Menu](screenshots/main-menu.png)     |
+| Add Product            | ![Add Product](screenshots/add-product.png) |
+| Error Handling         | ![Error](screenshots/error-message.png)     |
+| Test Results           | ![Tests](screenshots/test-results.png)      |
+| Build Output           | ![Build](screenshots/build-output.png)      |
+| Debug Session          | ![Debug](screenshots/debug-session.png)     |
+| Data File              | ![Data](screenshots/inventory-json.png)     |
+
+---
 
 ## 🤝 Contributing
 
