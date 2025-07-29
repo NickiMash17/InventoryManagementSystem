@@ -351,7 +351,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Module**: Program and Deploy Applications (251201-001-00-00-PM-03)  
 **Purpose**: C# Application Development Assessment  
 **Case Study**: Inventory Management System  
-**Total Marks**: 100/100 ✅
+
 
 **Student**: Nicolette Mashaba  
 **Repository**: https://github.com/NickiMash17/InventoryManagementSystem  
