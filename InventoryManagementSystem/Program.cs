@@ -47,11 +47,11 @@ namespace AdvancedInventoryManagement
         /// </summary>
     public class Product
     {
-        private string _name;
+        private string _name = string.Empty;
         private int _quantity;
         private decimal _price;
         private DateTime _dateAdded;
-        private string _productId;
+        private string _productId = string.Empty;
 
         /// <summary>
         /// Gets or sets the product name with validation
@@ -422,7 +422,7 @@ namespace AdvancedInventoryManagement
 
                 // Get product selection
                 string searchTerm = GetValidatedStringInput("Enter product name or number: ", 1, 50);
-                Product product = FindProduct(searchTerm);
+                Product? product = FindProduct(searchTerm);
 
                 if (product == null)
                 {
@@ -507,7 +507,7 @@ namespace AdvancedInventoryManagement
 
                 // Get product selection
                 string searchTerm = GetValidatedStringInput("Enter product name or number to remove: ", 1, 50);
-                Product product = FindProduct(searchTerm);
+                Product? product = FindProduct(searchTerm);
 
                 if (product == null)
                 {
@@ -552,7 +552,7 @@ namespace AdvancedInventoryManagement
         /// </summary>
         /// <param name="searchTerm">Product name or number to search for</param>
         /// <returns>Found product or null</returns>
-        private Product FindProduct(string searchTerm)
+        private Product? FindProduct(string searchTerm)
         {
             // Try to parse as number first
             if (int.TryParse(searchTerm, out int index) && index >= 1 && index <= _inventory.Count)
@@ -572,7 +572,7 @@ namespace AdvancedInventoryManagement
             while (true)
             {
                 Console.Write(prompt);
-                string input = Console.ReadLine()?.Trim();
+                string? input = Console.ReadLine()?.Trim();
 
                 if (string.IsNullOrWhiteSpace(input))
                 {
@@ -598,7 +598,7 @@ namespace AdvancedInventoryManagement
             while (true)
             {
                 Console.Write(prompt);
-                string input = Console.ReadLine()?.Trim();
+                string? input = Console.ReadLine()?.Trim();
 
                 if (!int.TryParse(input, out int value))
                 {
@@ -624,7 +624,7 @@ namespace AdvancedInventoryManagement
             while (true)
             {
                 Console.Write(prompt);
-                string input = Console.ReadLine()?.Trim();
+                string? input = Console.ReadLine()?.Trim();
 
                 if (!decimal.TryParse(input, NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal value))
                 {
@@ -706,7 +706,7 @@ namespace AdvancedInventoryManagement
                     // Enhanced input prompt
                     Console.Write("\n🎯 Please select an option (1-6): ");
                     
-                    string choice = Console.ReadLine()?.Trim();
+                    string? choice = Console.ReadLine()?.Trim();
                     
                     switch (choice)
                     {
@@ -728,6 +728,7 @@ namespace AdvancedInventoryManagement
                         case "6":
                             ExitApplication();
                             return;
+                        case null:
                         default:
                             DisplayInvalidOptionMessage();
                             break;

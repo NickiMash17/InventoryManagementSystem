@@ -43,7 +43,7 @@ using AdvancedInventoryManagement;
 [TestClass]
 public class InventoryManagerTests
 {
-    private InventoryManager _inventoryManager;
+    private InventoryManager _inventoryManager = null!;
 
     [TestInitialize]
     public void Setup()
